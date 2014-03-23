@@ -1,21 +1,15 @@
-function inner(value) {
+var classes = require("./lib/classes");
 
-    var callToString = function(anything) {
-        var str = toString.call(anything);
-        return str.replace("[object ", "").replace("]", "").toLowerCase();
-    };
+var ß = function(value){
+    var type = getType(value);
+    var base = new classes.base(value);
+    var typeClass = classes.base;
     
-    return {
-        is: function(what) {
-            if (!what) return callToString(value);
-            return (callToString(value) === what) ? true: false;
-        }
-    };
-
+    switch(type) {
+        case "string":
+            typeClass = classes.string;
+            break;
+    }
+    
+    return new typeClass(value);
 }
-
-function ßeta(value) {
-    return inner.call(null, value);
-}
-
-module.exports = ßeta;

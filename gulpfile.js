@@ -3,6 +3,8 @@ var gulp    = require("gulp"),
     rename  = require("gulp-rename"),
 	jshint  = require("gulp-jshint"),
 	uglify 	= require("gulp-uglify"),
+	coffee = require("gulp-coffee"),
+	coffeelint = require('gulp-coffeelint'),
 	stylish = require("jshint-stylish");
 
 gulp.task("test", function () {
@@ -14,21 +16,22 @@ gulp.task("test", function () {
 		}));
 });
 
-gulp.task("hint", function() {
-    gulp.src(["./beta.js"])
-        .pipe(jshint())
-        .pipe(jshint.reporter(stylish));
-});
-
 gulp.task("minify", function () {
 	gulp.src(["./beta.js"])
 		.pipe(uglify())
 		.pipe(rename("beta.min.js"))
-		.pipe(gulp.dest('./'));
+		.pipe(gulp.dest("./"));
 });
 
 gulp.task("watch", function () {
-	var code = gulp.watch(["./beta.js", "./lib/*.js"], ["default"]);
+	var code = gulp.watch([
+		"./beta.js",
+		"./lib/*.js",
+		"./test/*-test.js"], 
+		["test"]);
 });
 
-gulp.task("default", ["hint", "test", "minify"]);
+gulp.task("default", ["watch"]);
+gulp.task("min", ["minify"]);
+
+

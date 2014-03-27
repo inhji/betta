@@ -1,4 +1,4 @@
-ß = ()->
+ß = (value)->
   class BetaBase
     constructor: (@value) ->
       @type = callToString(@value)
@@ -8,7 +8,8 @@
         compareType @value, type
       else
         callToString @value
-  class BetaString
+
+  class BetaString extends BetaBase
     trim: ->
       @value.replace(/^\s\s*/, "").replace /\s\s*$/, ""
     isLower: ->
@@ -31,14 +32,14 @@
       /(?:(?:[a-f\d]{1,4}:)*(?:[a-f\d]{1,4}|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})|(?:(?:[a-f\d]{1,4}:)*[a-f\d]{1,4})?::(?:(?:[a-f\d]{1,4}:)*(?:[a-f\d]{1,4}|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}))?)/.test @value
     isEmpty: ->
       @value.length is 0
-  class BetaNumber
+  class BetaNumber extends BetaBase
     round: (decimals) ->
       exp = Math.pow 10, decimals or 2
       Math.round (@value * exp) / exp
-  class BetaObject
-  class BetaArray
-  class BetaDate
-  class BetaRegexp
+  class BetaObject extends BetaBase
+  class BetaArray extends BetaBase
+  class BetaDate extends BetaBase
+  class BetaRegexp extends BetaBase
     
   callToString = (anything, length) ->
     result = Object::toString.call(anything)
@@ -48,19 +49,19 @@
   
   compareType = (value, type) ->
     callToString(value) is type or callToString(value, 3) is type
-            
-  beta = (value)->
-    type = callToString value
-    typeClass = BetaBase
-    
-    switch type
-      when "string"   then typeClass = BetaString
-      when "number"   then typeClass = BetaNumber
-      when "object"   then typeClass = BetaObject
-      when "array"    then typeClass = BetaArray
-      when "date"     then typeClass = BetaDate
-      when "regexp"   then typeClass = BetaRegexp
         
-    return new typeClass
+  typeClass = BetaBase
+  type = callToString value
+  
+  switch 
+    when "string"   then typeClass = BetaString
+    when "number"   then typeClass = BetaNumber
+    when "object"   then typeClass = BetaObject
+    when "array"    then typeClass = BetaArray
+    when "date"     then typeClass = BetaDate
+    when "regexp"   then typeClass = BetaRegexp
+        
+  return new typeClass(value)
 
-module.exports = ß
+if module?
+  module.exports = ß

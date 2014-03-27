@@ -53,7 +53,7 @@
   typeClass = BetaBase
   type = callToString value
   
-  switch 
+  switch type
     when "string"   then typeClass = BetaString
     when "number"   then typeClass = BetaNumber
     when "object"   then typeClass = BetaObject

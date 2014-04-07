@@ -3,16 +3,17 @@
   "version": "0.1.0",
   "description": "utility belt with jquery like syntax",
   "main": "dist/beta.min.js",
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
     "chai": "~1.9.0",
     "mocha": "~1.17.1",
     "gulp": "~3.5.2",
+    "gulp-watch": "^0.5.3",
+    "gulp-grep-stream": "0.0.2",
     "gulp-uglify": "~0.2.0",
     "gulp-rename": "~1.0.0",
-    "gulp-mocha": "~0.4.1",
-    "gulp-coffee": "^1.4.1",
-    "gulp-coffeelint": "^0.3.1"
+    "gulp-mocha": "~0.4.1"
   },
   "scripts": {
     "test": "mocha"

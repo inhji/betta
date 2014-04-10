@@ -1,36 +1,43 @@
-var Embryo = require("embryo");
+var root = this;
 
-var BaseClass = Embryo.extend({
-    "_type": "Base",
-    
-    properties: {
-        value: null,
-        type: null
-    },
-    
-    init: function(value) {
-        this.value = value;
-    },
-    
-    is: function() {
-        return callToString(this.value);
-    },
-    "is|1": function(type){
-        return compareType(this.value, type);
-    }
-});
+function BaseClass(value){
+    this.value = value;
+}
+
+BaseClass.prototype.is = function() {
+    var args = Array.prototype.slice.call(arugments);
+};
 
 var callToString = function(value) {
     result = Object.prototype.toString.call(value)
         .replace(/\[object\s{1}|\]/g, "")
         .toLowerCase();
     return result;
-}
+};
 
 var compareType = function(value, type) {
     return callToString(value) === type;
 }
 
-var beta = function(){};
+var selecta = function (args) {
+    return new BaseClass(args);
+}
 
-module.exports = beta;
+var ß = function(){
+    var args = Array.prototype.slice.call(arguments);
+    
+    if (args.length === 0) {
+        return false;
+    };
+
+    return selecta(args);
+};
+
+if (typeof exports !== 'undefined') {
+    if (typeof module !== 'undefined' && module.exports) {
+        exports = module.exports = ß;
+    }
+    exports.ß = ß;
+} else {
+    root.ß = ß;
+}

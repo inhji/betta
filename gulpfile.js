@@ -2,25 +2,22 @@ var gulp        = require("gulp"),
     mocha       = require("gulp-mocha"),
     uglify      = require("gulp-uglify"),
     watch       = require("gulp-watch"),
-    grep        = require("gulp-grep-stream"),
+    rename      = require("gulp-rename"),
+    grep        = require("gulp-grep-stream");
 
-gulp.task("watch", function() {
-    gulp.src(["./test/*.js", "./src/*.js"], { read: false })
-        .pipe(watch({ emit: "all" }, function(files) {
-            files
-                .pipe(grep("*-test.js"))
-                .pipe(mocha({
-                    ui: "bdd",
-                    globals: ["chai"],
-                    reporter: "nyan"
-                }))
-                .on("error", function() {
-                    if (!/tests? failed/.test(err.stack)) {
-                        console.log(err.stack);
-                    }
-                });
-        }))
+gulp.task("dist", function () {
+    gulp.src('src/*.js')
+        .pipe(watch(function(files) {
+            return files
+                .pipe(uglify())
+                .pipe(rename("beta.min.js"))
+                .pipe(gulp.dest('./dist/'));
+        }));
 });
 
+gulp.task("test", function () {
+    gulp.src('test/*-test.js')
+        .pipe(mocha({reporter: 'nyan'}));
+});
 
-gulp.task("default", ["watch"]);
+gulp.task('default', ["dist", "test"]);

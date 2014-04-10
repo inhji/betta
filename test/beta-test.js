@@ -1,5 +1,6 @@
-var expect 		= require("chai").expect;
-var beta 		= require("../dist/beta.min.js");
+var chai 		= require("chai");
+var beta 		= require("../src/beta.js_old");
+var expect      = chai.expect;
 
 describe("ßeta", function () {
 	it('should be a function', function () {
@@ -23,6 +24,7 @@ describe("ßeta", function () {
 
 		});
 
+		/*
 		describe('string methods', function () {
 
 			describe('method is()', function () {
@@ -93,6 +95,7 @@ describe("ßeta", function () {
 				});
 			});
 		});
+		*/
 	});
 	
 });

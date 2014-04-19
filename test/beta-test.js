@@ -1,5 +1,5 @@
 var chai 		= require("chai");
-var beta 		= require("../src/beta.js_old");
+var beta 		= require("../src/beta.js");
 var expect      = chai.expect;
 
 describe("ßeta", function () {
@@ -7,22 +7,34 @@ describe("ßeta", function () {
 		expect(beta).to.be.a("function");
 	});
 
-	describe('invocation', function () {
-		describe('generic methods', function () {
+	describe('BaseClass', function () {
 
-			describe('method is()', function () {
-				it('should return string', function () {
-					expect(beta("foo").is()).to.equal("string");
-				});
+
+		describe('"foo" is()', function () {
+			it('should return "string"', function () {
+				expect(beta("foo").is()).to.equal("string");
 			});
-
-			describe('method is("string")', function () {
-				it('should return true', function () {
-					expect(beta("foo").is("string")).to.equal(true);
-				});
-			});
-
 		});
+
+		describe('"foo" is("string")', function () {
+			it('should return true', function () {
+				expect(beta("foo").is("string")).to.equal(true);
+			});
+		});
+
+		describe('1337 toString()', function () {
+			it('should return "1337"', function () {
+				expect(beta(1).toString()).to.equal("1");
+			});
+		});
+
+		describe('{foo: "bar"} toString()', function () {
+			it('should return stringified object', function () {
+				expect(beta({foo: "bar"}).toString()).to.equal("{\"foo\":\"bar\"}");
+			});
+		});
+
+	});
 
 		/*
 		describe('string methods', function () {
@@ -96,6 +108,5 @@ describe("ßeta", function () {
 			});
 		});
 		*/
-	});
 	
 });

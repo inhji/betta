@@ -1,11 +1,9 @@
 {
   "name": "beta",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "utility belt with jquery like syntax",
   "main": "dist/beta.min.js",
-  "dependencies": {
-    "embryo": "0.0.6"
-  },
+  "dependencies": {},
   "devDependencies": {
     "chai": "~1.9.0",
     "mocha": "~1.17.1",

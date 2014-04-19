@@ -152,7 +152,8 @@
            if (type === "string") { return v; };
            if (type === "number") { return v.toString(); };
            if (type === "array") { return v.toString(); };
-           if (type === "object") { return JSON.stringify(v) };
+           if (type === "object") { return JSON.stringify(v); };
+           if (type === "date") { return v.toISOString(); }
            if(v.hasOwnProperty("toString"))
                return v.toString();
            return "";

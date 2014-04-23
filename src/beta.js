@@ -5,43 +5,44 @@
 * author: inhji                     *
 *********************************** */
 
-(function() {
+(function (root) {
+    "use strict";
 
-    var root = this;
+    var nativeToString = Object.prototype.toString,
 
-    var callToString = function (value) {
-        return Object.prototype.toString.call(value)
-            .replace(/\[object\s{1}|\]/g, "")
-            .toLowerCase();
-    };
-    
-    function beta(arg) {
+        callToString = function (v) {
+            return nativeToString.call(v)
+                .replace(/\[object\s{1}|\]/g, "")
+                .toLowerCase();
+        },
+
+        compareToType = function (v, type) {
+            var s = callToString(v);
+            return s === type || s.substr(0, 3) === type;
+        };
+
+    function BaseClass(arg) {
         var self = this;
-        
+
         self.value = arg;
         self.type = callToString(arg);
-        
-        self.is = function(type) {
-            if (type) {
-                return callToString(self.value) === type;
-            } else {
-                return callToString(self.value);
-            }
+        self.is = function (type) {
+            if (type) { return compareToType(self.value, type); }
+            return callToString(self.value);
         };
     }
-    
-    // Wrapper
-    var \u00df = function(arg) {
-        return new beta(arg);
-    };
-    
-    if (typeof exports !== "undefined") {
-        if (typeof module !== "undefined" && module.exports) {
-            exports = module.exports = \u00df;
-        }
-        exports.\u00df = \u00df;
-    } else {
-        root.\u00df = \u00df;
+
+    function wrapper(arg) {
+        return new BaseClass(arg);
     }
 
-})();
+    if (typeof exports !== "undefined") {
+        if (typeof module !== "undefined" && module.exports) {
+            exports = module.exports = wrapper;
+        }
+        exports.\u00df = wrapper;
+    } else {
+        root.\u00df = wrapper;
+    }
+
+}(this));

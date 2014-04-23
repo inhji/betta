@@ -1,16 +1,31 @@
-/* ***********************************
-* ßeta                              *                            
-* Transform and compare (and stuff) *
-* v0.0.1                            *
-* author: inhji                     *
-*********************************** */
+/* ---------------------------------
+   _
+  | |__   ___| |_ __ _ 
+  | '_ \ / _ \ __/ _` |
+  | |_) |  __/ || (_| |
+  |_.__/ \___|\__\__,_|
+
+  ß("ßeta").is("string")
+  // => true
+
+  ß("Super simple typechecking").is()
+  // => "string"
+
+  author: inhji
+  license: wtfpl
+  v0.0.1
+ --------------------------------- */
 
 (function (root) {
     "use strict";
 
-    var nativeToString = Object.prototype.toString,
+    /* ----- Protos ----- */
 
-        callToString = function (v) {
+    var nativeToString = Object.prototype.toString;
+
+    /* ----- Helpers ----- */
+
+    var callToString = function (v) {
             return nativeToString.call(v)
                 .replace(/\[object\s{1}|\]/g, "")
                 .toLowerCase();
@@ -21,20 +36,43 @@
             return s === type || s.substr(0, 3) === type;
         };
 
-    function BaseClass(arg) {
+    /* ----- Base Class ----- */
+
+    function BaseClass(args) {
         var self = this;
 
-        self.value = arg;
-        self.type = callToString(arg);
+        self.values = args;
+        
         self.is = function (type) {
-            if (type) { return compareToType(self.value, type); }
-            return callToString(self.value);
+            if (type) {
+                return self.values
+                    .map(function(value) {
+                        return compareToType(value, type)
+                    })
+                    .reduce(function(a,b){
+                        return a && b;
+                    });
+            }
+            
+            var result = self.values
+                .map(function(value) {
+                    return callToString(value);
+                })
+                .reduce(function(prev, current){            
+                    return (prev === current)? current: false;
+                });
+            return result;
         };
     }
 
-    function wrapper(arg) {
-        return new BaseClass(arg);
+    /* ----- Wrapper ----- */
+
+    function wrapper() {
+        var args = Array.prototype.slice.call(arguments);
+        return new BaseClass(args);
     }
+
+    /* ----- Exports ----- */
 
     if (typeof exports !== "undefined") {
         if (typeof module !== "undefined" && module.exports) {

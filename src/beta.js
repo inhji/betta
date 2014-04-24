@@ -67,7 +67,7 @@
 
     /* ----- Wrapper ----- */
 
-    function wrapper() {
+    function beta() {
         var args = Array.prototype.slice.call(arguments);
         return new BaseClass(args);
     }
@@ -76,11 +76,11 @@
 
     if (typeof exports !== "undefined") {
         if (typeof module !== "undefined" && module.exports) {
-            exports = module.exports = wrapper;
+            exports = module.exports = beta;
         }
-        exports.\u00df = wrapper;
+        exports.\u00df = beta;
     } else {
-        root.\u00df = wrapper;
+        root.\u00df = beta;
     }
 
 }(this));

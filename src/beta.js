@@ -55,9 +55,7 @@
             }
             
             var result = self.values
-                .map(function(value) {
-                    return callToString(value);
-                })
+                .map(callToString)
                 .reduce(function(prev, current){            
                     return (prev === current)? current: false;
                 });

@@ -31,9 +31,22 @@
                 .toLowerCase();
         },
 
-        compareToType = function (v, type) {
+        compareToType = function (v, t) {
             var s = callToString(v);
-            return s === type || s.substr(0, 3) === type;
+            return s === t || s.substr(0, 3) === t;
+        },
+        
+        isDefined = function(v) {
+            var s = callToString(v);
+            return s !== "null" && s !== "undefined";
+        },
+        
+        isSame = function(prev, current) {
+            return prev && current;
+        },
+        
+        isCurrent = function(prev, current) {
+            return (prev === current)? current: false;
         };
 
     /* ----- Base Class ----- */
@@ -43,23 +56,24 @@
 
         self.values = args;
         
-        self.is = function (type) {
-            if (type) {
+        self.is = function(type) {
+            if (type) {                        
                 return self.values
                     .map(function(value) {
                         return compareToType(value, type)
                     })
-                    .reduce(function(a,b){
-                        return a && b;
-                    });
+                    .reduce(isSame);
             }
             
-            var result = self.values
+            return self.values
                 .map(callToString)
-                .reduce(function(prev, current){            
-                    return (prev === current)? current: false;
-                });
-            return result;
+                .reduce(isCurrent);
+        };
+        
+        self.isDef = function() {
+            return self.values
+                .map(isDefined)
+                .reduce(isSame);
         };
     }
 

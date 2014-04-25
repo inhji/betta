@@ -15,6 +15,8 @@ Methods are based on type, so **"foo"** will only have string methods while an *
 
 #### is()
 
+**Parameter**: none
+
 **Returns**: type:*String*
 
 Example:
@@ -34,6 +36,8 @@ Example:
     // => true
 
 #### isDef()
+
+**Parameter**: none
 
 **Returns**: Boolean
 

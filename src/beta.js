@@ -21,7 +21,8 @@
 
     /* ----- Protos ----- */
 
-    var nativeToString = Object.prototype.toString;
+    var nativeToString = Object.prototype.toString,
+        nativeSlice = Array.prototype.slice;
 
     /* ----- Helpers ----- */
 
@@ -80,7 +81,11 @@
     /* ----- Wrapper ----- */
 
     function beta() {
-        var args = Array.prototype.slice.call(arguments);
+        var args = nativeSlice.call(arguments);
+        
+        if(args.length === 0)
+            return false;
+        
         return new BaseClass(args);
     }
 

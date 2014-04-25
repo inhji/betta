@@ -2,19 +2,26 @@
 ** Typechecking and Utilities with a jQuery-like syntax **
 
 ## Syntax
+
     var ß = require("beta");
     ß("foo").is("string");
     // => true
 
 ## Methods
-Methods are based on type, so **"foo"** will only have string methods while an **object** has map functions, etc.
 
-## "Constructor"
-A call to `b(1)` determines the type and saves it together with the value. So you can do things like `ß(1).value` and `ß(2).type`. 
+Methods are based on type, so **"foo"** will only have string methods while an **object** has map functions, etc.
 
 ## TypeClasses
 
+
+
 ### BaseClass
+
+The *BaseClass* function provides the following methods:
+
+* is
+* isDef
+* isUndef
 
 #### is()
 

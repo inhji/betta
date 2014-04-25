@@ -1,10 +1,12 @@
-# ßeta
-** Typechecking and Utilities with a jQuery-like syntax **
+# ßeta 
 
-## Syntax
-    var ß = require("beta");
-    ß("foo").is("string");
-    // => true
+super simple type checking
+
+	ß("ßeta").is("string")
+	// => true
+    
+	ß("Super simple typechecking").is()
+  	// => "string"
 
 ## Methods
 Methods are based on type, so **"foo"** will only have string methods while an **object** has map functions, etc.

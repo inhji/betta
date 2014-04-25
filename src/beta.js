@@ -19,10 +19,20 @@
 (function (root) {
     "use strict";
 
+    var typeString = "object|function|string|number|date|regexp|undefined|null";
+
+    /* ----- Plugins ----- */
+
+    console.log("Loading plugins");
+    require("fs").readdirSync("./plugins").forEach(function(file) {
+        require("./plugins/" + file);
+        console.log(file);
+    });
+
     /* ----- Protos ----- */
 
-    var nativeToString = Object.prototype.toString,
-        nativeSlice = Array.prototype.slice;
+    var nativeToString  = Object.prototype.toString,
+        nativeSlice     = Array.prototype.slice;
 
     /* ----- Helpers ----- */
 
@@ -40,6 +50,10 @@
         isDefined = function(v) {
             var s = callToString(v);
             return s !== "null" && s !== "undefined";
+        },
+
+        isUndefined = function (v) {
+            return isDefined(v);
         },
         
         isSame = function(prev, current) {
@@ -76,6 +90,12 @@
                 .map(isDefined)
                 .reduce(isSame);
         };
+
+        self.isUndef = function () {
+            return self.values
+                .map(isUndefined)
+                .reduce(isSame);
+        }
     }
 
     /* ----- Wrapper ----- */
@@ -95,9 +115,9 @@
         if (typeof module !== "undefined" && module.exports) {
             exports = module.exports = beta;
         }
-        exports.\u00df = beta;
+        exports["\u00df"] = beta;
     } else {
-        root.\u00df = beta;
+        root["\u00df"] = beta;
     }
 
 }(this));

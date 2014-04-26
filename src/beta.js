@@ -21,14 +21,6 @@
 
     var typeString = "object|function|string|number|date|regexp|undefined|null";
 
-    /* ----- Plugins ----- */
-
-    console.log("Loading plugins");
-    require("fs").readdirSync("./plugins").forEach(function(file) {
-        require("./plugins/" + file);
-        console.log(file);
-    });
-
     /* ----- Protos ----- */
 
     var nativeToString  = Object.prototype.toString,

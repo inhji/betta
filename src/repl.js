@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var repl = require("repl");
-var ß = require("./src/beta.js");
+var ß = require("./beta.js");
 
 var reload = function () {
 	ß = require("./beta.js");

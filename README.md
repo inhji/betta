@@ -1,5 +1,4 @@
-# ßeta
-** Typechecking and Utilities with a jQuery-like syntax **
+# ßeta 
 
 ## Syntax
 
@@ -7,15 +6,20 @@
     ß("foo").is("string");
     // => true
 
+	ß("ßeta").is("string")
+	// => true
+    
+	ß("Super simple typechecking").is()
+
 ## Methods
 
 Methods are based on type, so **"foo"** will only have string methods while an **object** has map functions, etc.
 
-## TypeClasses
+## Plugins
 
+TODO
 
-
-### BaseClass
+## BaseClass
 
 The *BaseClass* function provides the following methods:
 
@@ -24,6 +28,8 @@ The *BaseClass* function provides the following methods:
 * isUndef
 
 #### is()
+
+**Parameter**: none
 
 **Returns**: type:*String*
 
@@ -43,18 +49,9 @@ Example:
     ß(1).is("number");
     // => true
 
-#### isUndef()
-
-**Returns**: Boolean
-
-Returns true if value is *undefined* or *null*
-
-Example:
-
-    ß(void(0)).isUndef(); 
-    // => true
-
 #### isDef()
+
+**Parameter**: none
 
 **Returns**: Boolean
 
@@ -62,8 +59,8 @@ Returns true if value is neither *undefined* nor *null*
 
 Example:
 
-    ß({foo: "bar"}).isDef(); 
-    // => true
+    ß(void(0)).isDef(); 
+    // => false
 
 
 ## 3rd-Party Licenses

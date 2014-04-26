@@ -11,31 +11,19 @@ function handleError(err) {
 }
 
 gulp.task("dist", function () {
-    gulp.src('./src/*.js')
-        .pipe(watch(function(files) {
-            return files
-                .pipe(uglify())
-                .pipe(rename("beta.min.js"))
-                .pipe(gulp.dest('./dist/'));
-        }));
-
-    gulp.src('./test/*-test.js')
-        .pipe(watch(function(files) {
-            return files
-                .pipe(mocha({reporter: 'spec'}))
-                .on("error", handleError);
-        }));
+    gulp.src('./src/beta.js')
+        .pipe(uglify())
+        .pipe(rename("beta.min.js"))
+        .pipe(gulp.dest('./dist/'));
 });
 
 gulp.task("test", function () {
-    /*
     gulp.src('test/*-test.js')
         .pipe(watch(function(files) {
             return files
                 .pipe(mocha({reporter: 'nyan'}))
                 .on("error", handleError);
         }));
-    */
 });
 
 gulp.task('default', ["dist", "test"]);

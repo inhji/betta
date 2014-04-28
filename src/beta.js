@@ -5,7 +5,7 @@
   | |_) |  __/ || (_| |
   |_.__/ \___|\__\__,_|
 
-  ß("ßeta").is("string")
+  ß("ßetta").is("string")
   // => true
 
   ß("Super simple typechecking").is()
@@ -90,7 +90,7 @@
 
     /* ----- Wrapper ----- */
 
-    function beta() {
+    function betta() {
         var args = nativeSlice.call(arguments);
         
         if(args.length === 0)
@@ -103,11 +103,11 @@
 
     if (typeof exports !== "undefined") {
         if (typeof module !== "undefined" && module.exports) {
-            exports = module.exports = beta;
+            exports = module.exports = betta;
         }
-        exports["\u00df"] = beta;
+        exports["\u00df"] = betta;
     } else {
-        root["\u00df"] = beta;
+        root["\u00df"] = betta;
     }
 
 }(this));

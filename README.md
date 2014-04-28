@@ -3,21 +3,19 @@
 ## Syntax
 
     var ß = require("beta");
-    ß("foo").is("string");
-    // => true
 
-	ß("ßeta").is("string")
+	ß("ßeta").is("str")
 	// => true
     
 	ß("Super simple typechecking").is()
+    // => "string"
+
+    ß(1337).is("number")
+    // => true
 
 ## Methods
 
 Methods are based on type, so **"foo"** will only have string methods while an **object** has map functions, etc.
-
-## Plugins
-
-TODO
 
 ## BaseClass
 
@@ -49,6 +47,8 @@ Example:
     ß(1).is("number");
     // => true
 
+> All types have a short form, so instead of *"string"* you also can type *"str"* 
+
 #### isDef()
 
 **Parameter**: none
@@ -61,7 +61,3 @@ Example:
 
     ß(void(0)).isDef(); 
     // => false
-
-
-## 3rd-Party Licenses
-Typechecking is build heavily on [robb](https://www.npmjs.org/package/robb). License included.

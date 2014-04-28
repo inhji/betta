@@ -18,9 +18,7 @@
 
 (function (root) {
     "use strict";
-
-    var typeString = "object|function|string|number|date|regexp|undefined|null";
-
+    
     /* ----- Protos ----- */
 
     var nativeToString  = Object.prototype.toString,
@@ -45,7 +43,7 @@
         },
 
         isUndefined = function (v) {
-            return isDefined(v);
+            return !isDefined(v);
         },
         
         isSame = function(prev, current) {

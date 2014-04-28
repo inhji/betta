@@ -13,9 +13,6 @@
     ß(1337).is("number")
     // => true
 
-## Methods
-
-Methods are based on type, so **"foo"** will only have string methods while an **object** has map functions, etc.
 
 ## BaseClass
 
@@ -61,3 +58,7 @@ Example:
 
     ß(void(0)).isDef(); 
     // => false
+
+
+Roadmap:
+Methods should be based on type, so **"foo"** will only have string methods while an **object** will have map, reduce, etc.

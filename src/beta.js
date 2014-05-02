@@ -88,6 +88,30 @@
                 .reduce(isSame);
         }
     }
+    
+    /* ----- Function ----- */
+    
+    function Function(args) {
+        var self = Base(args);
+        
+        return self;
+    }
+    
+    /* ----- Number ----- */
+    
+    function Number(args){
+        var self = Base(args);
+        
+        self.isEven = function(){
+            return self.values.every(isEven);
+        }
+        
+        self.isOdd = function() {
+            return !self.values.every(isEven);
+        }
+        
+        return self;
+    }
 
     /* ----- Wrapper ----- */
 

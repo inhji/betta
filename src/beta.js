@@ -64,10 +64,10 @@
             return Math.round(num * multi) / multi;
         };
 
-    /* ----- Base Class ----- */
+    /* ----- Object Class ----- */
 
-    function BaseClass(args) {
-        var self = BaseClass;
+    function ObjectClass(args) {
+        var self = ObjectClass;
 
         self.values = args;
         
@@ -76,8 +76,7 @@
                 return self.values
                     .map(function(value) {
                         return compareToType(value, type)
-                    })
-                    .reduce(isSame);
+                    }).reduce(isSame);
             }
             
             return self.values
@@ -99,11 +98,19 @@
         
         return self;
     }
-    
+
+    /* ----- String ----- */
+
+    function StringClass(args) {
+        var self = ObjectClass(args);
+
+        return self;
+    }
+
     /* ----- Function ----- */
     
     function FunctionClass(args) {
-        var self = BaseClass(args);
+        var self = ObjectClass(args);
         
         return self;
     }
@@ -111,7 +118,7 @@
     /* ----- Number ----- */
     
     function NumberClass(args){
-        var self = BaseClass(args);
+        var self = ObjectClass(args);
         
         self.isEven = function(){
             return self.values.every(isEven);
@@ -148,12 +155,16 @@
         }
             
         switch (type) {
+            case "string":
+                return StringClass(args);
             case "number":
                 return NumberClass(args);
+            case "array":
+                return ArrayClass(args);
             case "function":
                 return FunctionClass(args);
             default:
-                return BaseClass(args);
+                return ObjectClass(args);
         }
         
     }

@@ -47,4 +47,24 @@ describe("ßeta", function () {
 
 	});
 
+	describe('Number', function () {
+		describe('42 isEven()', function () {
+			it('should return true', function () {
+				expect(beta(42).isEven()).to.equal(true);
+			});
+		});
+
+		describe('99 isOdd()', function () {
+			it('should return true', function () {
+				expect(beta(99).isOdd()).to.equal(true);
+			});
+		});
+
+		describe('1.337 round()', function () {
+			it('should return [ 1.34 ]', function () {
+				expect(beta(1.337).round()[0]).to.equal(1.34);
+			});
+		});
+	});
+
 });

@@ -53,12 +53,21 @@
         
         isCurrent = function(prev, current) {
             return (prev === current)? current: false;
+        },
+
+        isEven = function (number) {
+            return number % 2 === 0;
+        },
+
+        round = function(num, dec) {
+            var multi = Math.pow(10, dec);
+            return Math.round(num * multi) / multi;
         };
 
     /* ----- Base Class ----- */
 
     function BaseClass(args) {
-        var self = this;
+        var self = BaseClass;
 
         self.values = args;
         
@@ -87,20 +96,22 @@
                 .map(isUndefined)
                 .reduce(isSame);
         }
+        
+        return self;
     }
     
     /* ----- Function ----- */
     
-    function Function(args) {
-        var self = Base(args);
+    function FunctionClass(args) {
+        var self = BaseClass(args);
         
         return self;
     }
     
     /* ----- Number ----- */
     
-    function Number(args){
-        var self = Base(args);
+    function NumberClass(args){
+        var self = BaseClass(args);
         
         self.isEven = function(){
             return self.values.every(isEven);
@@ -109,6 +120,12 @@
         self.isOdd = function() {
             return !self.values.every(isEven);
         }
+
+        self.round = function (dec) {
+            return self.values.map(function (val) {
+                return round(val, dec || 2);
+            });
+        }
         
         return self;
     }
@@ -116,12 +133,29 @@
     /* ----- Wrapper ----- */
 
     function betta() {
-        var args = nativeSlice.call(arguments);
+        var args = nativeSlice.call(arguments),
+            type;
         
         if(args.length === 0)
             return false;
+            
+        type = args
+            .map(callToString)
+            .reduce(isSame);
+            
+        if (type === false) {
+            return false;
+        }
+            
+        switch (type) {
+            case "number":
+                return NumberClass(args);
+            case "function":
+                return FunctionClass(args);
+            default:
+                return BaseClass(args);
+        }
         
-        return new BaseClass(args);
     }
 
     /* ----- Exports ----- */

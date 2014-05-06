@@ -62,6 +62,10 @@
         round = function(num, dec) {
             var multi = Math.pow(10, dec);
             return Math.round(num * multi) / multi;
+        },
+        
+        trim = function(str) {
+            return str.replace(/^\s+|\s+$/g, "")
         };
 
     /* ----- Object Class ----- */
@@ -96,6 +100,10 @@
                 .reduce(isSame);
         }
         
+        self.done = function() {
+            return (self.values.length === 1)? self.values[0]: self.values;
+        }
+        
         return self;
     }
 
@@ -103,6 +111,12 @@
 
     function StringClass(args) {
         var self = ObjectClass(args);
+        
+        self.trim = function(str){
+            self.values = self.values.map(trim);
+            
+            return self;
+        }
 
         return self;
     }
@@ -119,19 +133,12 @@
     
     function NumberClass(args){
         var self = ObjectClass(args);
-        
-        self.isEven = function(){
-            return self.values.every(isEven);
-        }
-        
-        self.isOdd = function() {
-            return !self.values.every(isEven);
-        }
 
         self.round = function (dec) {
-            return self.values.map(function (val) {
-                return round(val, dec || 2);
+            self.values = self.values.map(function (val) {
+                return round(val, dec || 0);
             });
+            return self;
         }
         
         return self;

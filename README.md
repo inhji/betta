@@ -1,64 +1,35 @@
 # ßetta
 
-## Syntax
+## Example
 
     var ß = require("beta");
-
-	ß("ßeta").is("str")
-	// => true
     
-	ß("Super simple typechecking").is()
-    // => "string"
+Get the type:
 
-    ß(1337).is("number")
+	ß("ßeta")
+	// => "string"
+    
+Check the type:
+    
+	ß("Super simple typechecking", "str")
     // => true
 
-
-## BaseClass
-
-The *BaseClass* function provides the following methods:
-
-* is
-* isDef
-* isUndef
-
-#### is()
-
-**Parameter**: none
-
-**Returns**: type:*String*
-
-Example:
-
-    ß(1).is(); 
-    // => "number"
-
-#### is(type)
-
-**Parameter**: type: *String*
-
-**Returns**: Boolean
-
-Example: 
-
-    ß(1).is("number");
+    ß(42, "number")
     // => true
+    
+## Types
 
-> All types have a short form, so instead of *"string"* you also can type *"str"* 
+These types can be checked for:
 
-#### isDef()
+* **str**ing
+* **num**ber
+* **obj**ect
+* **arr**ay
+* **reg**exp
+* **dat**e
 
-**Parameter**: none
+..or their 3-character equivalents (marked **bold**).
 
-**Returns**: Boolean
+## License
 
-Returns true if value is neither *undefined* nor *null*
-
-Example:
-
-    ß(void(0)).isDef(); 
-    // => false
-
-
-Roadmap:
-Methods should be based on type, so **"foo"** will only have string methods while an **object** will have map, reduce, etc.
+wtfpl

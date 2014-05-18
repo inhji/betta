@@ -2,7 +2,7 @@
 
 ## Example
 
-    var ß = require("beta");
+    var ß = require("betta");
     
 Get the type:
 

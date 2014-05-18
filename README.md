@@ -21,14 +21,18 @@ Check the type:
 
 These types can be checked for:
 
-* **str**ing
-* **num**ber
-* **obj**ect
-* **arr**ay
-* **reg**exp
-* **dat**e
+string | str
 
-..or their 3-character equivalents (marked **bold**).
+number | num
+
+object | obj
+
+array | arr
+
+regexp | reg
+
+date | dat
+
 
 ## License
 

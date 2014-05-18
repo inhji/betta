@@ -1,8 +1,20 @@
 # ßetta
 
-## Example
+__Super Simple Typechecking__
 
-    var ß = require("betta");
+---
+
+## Install
+
+through npm:
+
+	npm install betta
+
+## Require
+
+	var ß = require("betta");
+		
+## Usage
     
 Get the type:
 

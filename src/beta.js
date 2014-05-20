@@ -1,10 +1,10 @@
 /* ---------------------------------
-  ___            __    __          
-  \_ |__   _____/  |__/  |______   
-   | __ \_/ __ \   __\   __\__  \  
+  ___            __    __
+  \_ |__   _____/  |__/  |______
+   | __ \_/ __ \   __\   __\__  \
    | \_\ \  ___/|  |  |  |  / __ \_
    |___  /\___  >__|  |__| (____  /
-       \/     \/                \/ 
+       \/     \/                \/
 
   ß("ßetta").is("string")
   // => true
@@ -28,10 +28,8 @@ var compareToType = function (v, t) {
     return s === t || s.substr(0, 3) === t;
 };
 
-module.exports = function(value, type) {      
-    if (type) {
-        return compareToType(value, type)
-    }
-    
-    return getType(value);
+module.exports = function(value, type) {
+    return (type)?
+        compareToType(value, type):
+        getType(value);
 };

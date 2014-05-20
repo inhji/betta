@@ -17,13 +17,4 @@ gulp.task("dist", function () {
         .pipe(gulp.dest('./dist/'));
 });
 
-gulp.task("test", function () {
-    gulp.src('test/*-test.js')
-        .pipe(watch(function(files) {
-            return files
-                .pipe(mocha({reporter: 'nyan'}))
-                .on("error", handleError);
-        }));
-});
-
-gulp.task('default', ["dist", "test"]);
+gulp.task('default', ["dist"]);
